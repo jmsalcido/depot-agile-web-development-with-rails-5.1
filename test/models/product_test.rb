@@ -62,6 +62,6 @@ class ProductTest < ActiveSupport::TestCase
     product.title = 'Less'
 
     assert product.invalid?
-    assert_equal ["is too short (minimum is 5 characters)"], product.errors[:title]
+    assert_equal ["'Less' size is not the minimum of: 5"], product.errors[:title]
   end
 end
