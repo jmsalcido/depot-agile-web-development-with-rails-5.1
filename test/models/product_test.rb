@@ -4,7 +4,7 @@ class ProductTest < ActiveSupport::TestCase
   fixtures :products
 
   def new_product(image_url)
-    Product.new(title: 'My Book Title',
+    Product.new(title: "My Book Title #{rand(1000)}",
                 description: 'yyy',
                 price: 1,
                 image_url: image_url)
@@ -55,5 +55,13 @@ class ProductTest < ActiveSupport::TestCase
                           image_url: 'any.jpg')
     assert product.invalid?
     assert_equal [I18n.translate('errors.messages.taken')], product.errors[:title]
+  end
+
+  test 'product title length' do
+    product = Product.new
+    product.title = 'Less'
+
+    assert product.invalid?
+    assert_equal ["is too short (minimum is 5 characters)"], product.errors[:title]
   end
 end
