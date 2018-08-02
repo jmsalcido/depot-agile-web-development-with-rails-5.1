@@ -15,77 +15,89 @@
  */
 
 body {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 header.main {
-    text-align: center;
-    @media (min-width: 30em) {
-        text-align: left;
-    }
+  text-align: center;
+  @media (min-width: 30em) {
+    text-align: left;
+  }
 
-    background: #282;
-    margin: 0;
-    h1 {
-        display: none;
-    }
+  background: #282;
+  margin: 0;
+  h1 {
+    display: none;
+  }
 }
 
 .content {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 
-    display: flex;
-    display: -webkit-flex;
-    
-    flex-direction: column;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
+  display: flex;
+  display: -webkit-flex;
+
+  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+
+  @media (min-width: 30em) {
+    flex-direction: row;
+    -webkit-box-orient: horizontal;
+  }
+
+  nav {
+    padding-bottom: 1em;
+    background: #141;
+    text-align: center;
 
     @media (min-width: 30em) {
-        flex-direction: row;
-        -webkit-box-orient: horizontal;
+      text-align: left;
+      padding: 1em;
     }
 
-    nav {
-        padding-bottom: 1em;
-        background: #141;
-        text-align: center;
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
 
-        @media (min-width: 30em) {
-            text-align: left;
-            padding: 1em;
-        }
+      @media (min-width: 30em) {
+        padding-right: 1em;
+      }
 
-        ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-
-            @media (min-width: 30em) {
-                padding-right: 1em;
-            }
-
-            li {
-                margin: 0;
-                padding: 0.5em;
-                text-transform: uppercase;
-                letter-spacing: 0.354em;
-                a {
-                    color: #bfb;
-                    text-decoration: none;
-                }
-
-                a:hover {
-                    background: none;
-                    color: white;
-                }
-            }
-        }
-    }
-
-    main {
+      li {
+        margin: 0;
         padding: 0.5em;
+        text-transform: uppercase;
+        letter-spacing: 0.354em;
+        a {
+          color: #bfb;
+          text-decoration: none;
+        }
+
+        a:hover {
+          background: none;
+          color: white;
+        }
+      }
     }
+  }
+
+  main {
+    padding: 0.5em;
+  }
+}
+
+.notice,
+#notice {
+  background: #ffb;
+  border-radius: 0.5em;
+  border: solid 0.177em #882;
+  color: #882;
+  font-weight: bold;
+  margin-bottom: 1em;
+  padding: 1em 1.414em;
+  text-align: center;
 }
