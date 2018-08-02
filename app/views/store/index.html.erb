@@ -2,6 +2,12 @@
     <aside id="notice"><%= notice %></aside>
 <% end %>
 
+<% if @visit_counter > 5 %>
+    <p id="visit_counter">
+        You have visited this page: <strong><%= pluralize @visit_counter, "times" %></strong>
+    </p>
+<% end %>
+
 <h1>Your Pragmatic Catalog</h1>
 
 <ul class="catalog">
