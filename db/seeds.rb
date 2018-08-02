@@ -21,3 +21,14 @@ out which cross-platform solution makes the most sense for your needs.
 </p>),
                 image_url: '7apps.jpg',
                 price: 26.00)
+
+Product.create!(title: 'Programming Ruby 1.9',
+                description:
+  %(<p>
+  <em>Also known as the Pick Axe</em>
+  Ruby is the fastest growing and most exciting dynamic
+  language out there. If you need to get working programs
+  delivered fast, you should add Ruby to your toolbox.
+  </p>),
+                image_url: 'ruby.jpg',
+                price: 30.00)

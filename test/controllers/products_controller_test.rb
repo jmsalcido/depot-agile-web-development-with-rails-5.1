@@ -53,4 +53,14 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_select 'main.products', minimum: 1
     assert_select 'main.products table', minimum: 1
   end
+
+  test 'can\'t delete product in cart' do
+    assert_difference('Product.count', 0) do
+      delete product_url(products(:two))
+    end
+
+    assert_response :redirect
+    assert_redirected_to products_url
+    assert_equal 'Line Items present', flash[:notice]
+  end
 end
