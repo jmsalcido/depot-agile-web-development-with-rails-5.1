@@ -40,6 +40,5 @@ class StoreControllerTest < ActionDispatch::IntegrationTest
     get store_index_url
     get store_index_url
     assert_select '#visit_counter', minimum: 1
-    
   end
 end
