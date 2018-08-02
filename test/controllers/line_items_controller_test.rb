@@ -21,6 +21,7 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
     end
 
     follow_redirect!
+    assert_equal session[:visit_counter], 0
     assert_select 'h2', 'Your Pragmatic Cart'
     assert_select 'li', products(:ruby).title
   end
