@@ -71,6 +71,21 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
       delete line_item_url(@line_item)
     end
 
-    assert_redirected_to line_items_url
+    assert_redirected_to store_index_url
+  end
+
+  test 'should reduce quantity by 1 in line_item when there is greater than 1' do
+    line_item = line_items(:two)
+
+    assert_no_changes('LineItem.count') do
+      delete line_item_url(line_item)
+    end
+
+    assert_redirected_to line_item.cart
+
+    follow_redirect!
+
+    assert_select 'td.quantity', 1
+    assert_select 'td', line_item.product.title
   end
 end
