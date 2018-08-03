@@ -27,6 +27,30 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
     assert_select 'td', products(:ruby).title
   end
 
+  test 'should update the quantity of line_items' do
+    assert_difference('LineItem.count') do
+      post line_items_url, params: { product_id: products(:ruby).id }
+    end
+
+    follow_redirect!
+
+    assert_select 'h2', 'Your Cart'
+    assert_select 'td.quantity', '1'
+    assert_select 'td.price', '$49.00'
+    assert_select 'tfoot td.price', '$49.00'
+
+    assert_no_changes('LineItem.count') do
+      post line_items_url, params: { product_id: products(:ruby).id }
+    end
+
+    follow_redirect!
+
+    assert_select 'h2', 'Your Cart'
+    assert_select 'td.quantity', '2'
+    assert_select 'td.price', '$98.00'
+    assert_select 'tfoot td.price', '$98.00'
+  end
+
   test "should show line_item" do
     get line_item_url(@line_item)
     assert_response :success
