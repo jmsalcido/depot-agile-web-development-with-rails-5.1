@@ -11,6 +11,12 @@ class CartsController < ApplicationController
   # GET /carts/1
   # GET /carts/1.json
   def show
+    cart_id = session[:cart_id]
+    unless @cart.id == cart_id
+      logger.warn "Trying to access a different cart that is not present in session.
+                   Params: #{@cart.id}, session: #{cart_id}"
+      redirect_to store_index_url
+    end
   end
 
   # GET /carts/new

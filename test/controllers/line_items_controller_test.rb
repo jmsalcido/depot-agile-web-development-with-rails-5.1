@@ -83,9 +83,6 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to line_item.cart
 
-    follow_redirect!
-
-    assert_select 'td.quantity', 1
-    assert_select 'td', line_item.product.title
+    assert_equal LineItem.find(line_item.id).quantity, 2
   end
 end
