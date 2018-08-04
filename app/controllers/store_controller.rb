@@ -1,4 +1,8 @@
 class StoreController < ApplicationController
+  include CurrentCart
+
+  before_action :set_cart
+
   def index
     if session[:visit_counter].nil?
       session[:visit_counter] = 1

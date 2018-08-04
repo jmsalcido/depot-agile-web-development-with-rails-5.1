@@ -32,7 +32,7 @@ class CartsControllerTest < ActionDispatch::IntegrationTest
 
     # go to the cart url
     get cart_url(line_item.cart)
-    
+
     assert_response :success
   end
 

@@ -22,7 +22,7 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
 
     follow_redirect!
 
-    assert_equal session[:visit_counter], 0
+    assert_equal session[:visit_counter], 1 # redirected to store index now.
     assert_select 'h2', 'Your Cart'
     assert_select 'td', products(:ruby).title
   end
