@@ -11,3 +11,4 @@ two:
   cart: two
   price: 1.2
   quantity: 2
+  order: one
