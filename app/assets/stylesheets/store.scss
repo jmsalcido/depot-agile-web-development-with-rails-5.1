@@ -21,7 +21,8 @@
                 display: block;
             }
 
-            img {
+            img,
+            input[type="image"] {
                 float: left;
                 padding: 1em;
                 margin-right: 1em;
