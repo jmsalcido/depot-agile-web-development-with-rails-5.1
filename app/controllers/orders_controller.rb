@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
   before_action :set_cart, only: [:new, :create]
   before_action :ensure_cart_isnt_empty, only: [:new, :create]
   before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_pay_types, only: [:edit, :new]
 
   # GET /orders
   # GET /orders.json
@@ -29,6 +30,7 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
+    # @order.pay_type = PayType.find params.require(:order)[:pay_type]
     @order.add_line_items_from_cart(@cart)
 
     respond_to do |format|
@@ -52,7 +54,10 @@ class OrdersController < ApplicationController
         format.html { redirect_to @order, notice: 'Order was successfully updated.' }
         format.json { render :show, status: :ok, location: @order }
       else
-        format.html { render :edit }
+        format.html do
+          set_pay_types
+          render :edit
+        end
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
@@ -70,6 +75,10 @@ class OrdersController < ApplicationController
 
   private
 
+  def set_pay_types
+    @pay_types = PayType.all
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_order
     @order = Order.find(params[:id])
@@ -77,7 +86,7 @@ class OrdersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def order_params
-    params.require(:order).permit(:name, :address, :email, :pay_type)
+    params.require(:order).permit(:name, :address, :email, :pay_type_id)
   end
 
   def ensure_cart_isnt_empty
