@@ -63,4 +63,30 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to products_url
     assert_equal 'Line Items present', flash[:notice]
   end
+
+  test 'generate XML correctly' do
+    get who_bought_product_url(products(:ruby).id, format: :xml)
+    assert_response :success
+
+    assert_select 'who_bought' do
+      assert_select 'title', "Who bought #{products(:ruby).title}"
+      assert_select 'latest_order', 1
+      assert_select 'orders' do
+        assert_select 'order' do |elements|
+          elements.each do |element|
+            assert_select element, 'shipped_to', 1
+            assert_select element, 'items' do
+              assert_select 'item' do |item|
+                assert_select 'item'
+              end
+            end
+            assert_select element, 'total', 1
+            assert_select element, 'paid_by', 1
+            assert_select element, 'bought_by', 1
+            assert_select element, 'email', 1
+          end
+        end
+      end
+    end
+  end
 end

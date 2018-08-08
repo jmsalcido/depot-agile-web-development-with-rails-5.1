@@ -11,3 +11,15 @@ two:
   address: 
   email: MyString
   pay_type: 1
+
+correct_order_1:
+  name: JS
+  address: Avenida Siempre Viva 123
+  email: unemail@delinternet.com
+  pay_type: 2
+
+correct_order_2:
+  name: TB
+  address: Avenida Siempre Viva 123
+  email: otroemail@delinternet.com
+  pay_type: 3

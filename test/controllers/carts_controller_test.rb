@@ -25,10 +25,10 @@ class CartsControllerTest < ActionDispatch::IntegrationTest
 
   test "should show cart" do
     # add a cart to the session
-    post line_items_url, params: { product_id: products(:ruby).id }
+    post line_items_url, params: { product_id: products(:one).id }
 
     # find the line item (contains cart that is added in session)
-    line_item = LineItem.where(product_id: products(:ruby).id)[0]
+    line_item = LineItem.where(product_id: products(:one).id)[0]
 
     # go to the cart url
     get cart_url(line_item.cart)

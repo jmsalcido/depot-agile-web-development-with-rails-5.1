@@ -12,3 +12,21 @@ two:
   price: 1.2
   quantity: 2
   order: one
+
+correct_line_item_1:
+  product: ruby
+  price: 30.0
+  quantity: 2
+  order: correct_order_1
+
+correct_line_item_2:
+  product: ruby
+  price: 31.0
+  quantity: 1
+  order: correct_order_1
+
+correct_line_item_3:
+  product: ruby
+  price: 20.0
+  quantity: 1
+  order: correct_order_2

@@ -5,7 +5,7 @@ xml.who_bought do
   xml.latest_order @latest_order.try(:updated_at)
   xml.orders do
     @product.orders.each do |order|
-      xml.order do
+      xml.order id: order.id do
         xml.shipped_to order.address
         xml.items do
           order.line_items.each do |line_item|
