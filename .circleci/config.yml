@@ -64,7 +64,7 @@ jobs:
         when: on_success
         command: |
           if [ "$CIRCLE_NODE_INDEX" == 0 ]; then
-            bash ~/repo/scripts/circle_ci_build_info.sh true http://bots.otfusion.org/build/info
+            bash ~/repo/scripts/circle_ci_build_info.sh true $BOT_BUILD_URL
           fi
 
     - run:
@@ -72,7 +72,7 @@ jobs:
         when: on_fail
         command: |
           if [ "$CIRCLE_NODE_INDEX" == 0 ]; then
-            bash ~/repo/scripts/circle_ci_build_info.sh false http://bots.otfusion.org/build/info
+            bash ~/repo/scripts/circle_ci_build_info.sh false $BOT_BUILD_URL
           fi
 
     # collect reports
