@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
     # specify the version you desire here
-    - image: circleci/2.5.1-stretch-node-browsers
+    - image: circleci/2.5.1-node-browsers
 
     # Specify service dependencies here if necessary
     # CircleCI maintains a library of pre-built images
