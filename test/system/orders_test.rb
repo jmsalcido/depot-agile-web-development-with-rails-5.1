@@ -1,49 +1,84 @@
 require "application_system_test_case"
 
 class OrdersTest < ApplicationSystemTestCase
-  setup do
-    @order = orders(:one)
+
+  test 'check form' do
+    visit store_index_url
+
+    first('.catalog li').click_on 'Add to Cart'
+
+    click_on 'Checkout'
+
+    fill_in 'order_name', with: 'Jose Salcido'
+    fill_in 'order_address', with: '123 Main Street'
+    fill_in 'order_email', with: 'js@otfusion.org'
+
+    assert_no_selector '#order_routing_number'
+    assert_no_selector '#order_account_number'
+
+    select 'Check', from: 'pay_type'
+
+    assert_selector '#order_routing_number'
+    assert_selector '#order_account_number'
+
   end
 
-  test "visiting the index" do
-    visit orders_url
-    assert_selector "h1", text: "Orders"
+  test 'credit card form' do
+    visit store_index_url
+
+    first('.catalog li').click_on 'Add to Cart'
+
+    click_on 'Checkout'
+
+    fill_in 'order_name', with: 'Jose Salcido'
+    fill_in 'order_address', with: '123 Main Street'
+    fill_in 'order_email', with: 'js@otfusion.org'
+
+    assert_no_selector '#order_credit_card_number'
+    assert_no_selector '#order_expiration_date'
+
+    select 'Credit Card', from: 'pay_type'
+
+    assert_selector '#order_credit_card_number'
+    assert_selector '#order_expiration_date'
+
   end
 
-  test "creating a Order" do
-    visit orders_url
-    click_on "New Order"
+  test 'purchase order form' do
+    visit store_index_url
 
-    fill_in "Address", with: @order.address
-    fill_in "Email", with: @order.email
-    fill_in "Name", with: @order.name
-    fill_in "Pay Type", with: @order.pay_type
-    click_on "Create Order"
+    first('.catalog li').click_on 'Add to Cart'
 
-    assert_text "Order was successfully created"
-    click_on "Back"
+    click_on 'Checkout'
+
+    fill_in 'order_name', with: 'Jose Salcido'
+    fill_in 'order_address', with: '123 Main Street'
+    fill_in 'order_email', with: 'js@otfusion.org'
+
+    assert_no_selector '#order_po_number'
+
+    select 'Purchase Order', from: 'pay_type'
+
+    assert_selector '#order_po_number'
+
   end
 
-  test "updating a Order" do
-    visit orders_url
-    click_on "Edit", match: :first
+  test 'default form' do
+    visit store_index_url
 
-    fill_in "Address", with: @order.address
-    fill_in "Email", with: @order.email
-    fill_in "Name", with: @order.name
-    fill_in "Pay Type", with: @order.pay_type
-    click_on "Update Order"
+    first('.catalog li').click_on 'Add to Cart'
 
-    assert_text "Order was successfully updated"
-    click_on "Back"
-  end
+    click_on 'Checkout'
 
-  test "destroying a Order" do
-    visit orders_url
-    page.accept_confirm do
-      click_on "Destroy", match: :first
-    end
+    fill_in 'order_name', with: 'Jose Salcido'
+    fill_in 'order_address', with: '123 Main Street'
+    fill_in 'order_email', with: 'js@otfusion.org'
 
-    assert_text "Order was successfully destroyed"
+    assert_no_selector '#order_po_number'
+    assert_no_selector '#order_routing_number'
+    assert_no_selector '#order_account_number'
+    assert_no_selector '#order_credit_card_number'
+    assert_no_selector '#order_expiration_date'
+
   end
 end
