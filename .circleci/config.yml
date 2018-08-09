@@ -60,20 +60,20 @@ jobs:
           bundle exec rake
 
     - run:
-          name: Build Passed
-          when: on_success
-          command: |
-            if [ "$CIRCLE_NODE_INDEX" == 0 ]; then
-              scripts/circle_ci_build_info.sh true
-            fi
+        name: Build Passed
+        when: on_success
+        command: |
+          if [ "$CIRCLE_NODE_INDEX" == 0 ]; then
+            scripts/circle_ci_build_info.sh true
+          fi
 
     - run:
-      name: Build Failed
-      when: on_fail
-      command: |
-        if [ "$CIRCLE_NODE_INDEX" == 0 ]; then
-          scripts/circle_ci_build_info.sh false
-        fi
+        name: Build Failed
+        when: on_fail
+        command: |
+          if [ "$CIRCLE_NODE_INDEX" == 0 ]; then
+            scripts/circle_ci_build_info.sh false
+          fi
 
     # collect reports
     - store_test_results:
