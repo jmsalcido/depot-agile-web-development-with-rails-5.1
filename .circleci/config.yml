@@ -72,7 +72,7 @@ jobs:
         when: on_fail
         command: |
           if [ "$CIRCLE_NODE_INDEX" == 0 ]; then
-            ./scripts/circle_ci_build_info.sh false
+            sh ~/repo/scripts/circle_ci_build_info.sh false
           fi
 
     # collect reports

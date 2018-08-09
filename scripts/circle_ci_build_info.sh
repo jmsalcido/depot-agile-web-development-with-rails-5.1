@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
+set -o pipefail
 
 # build info 1.0
 # projectUrl :string
 # message :string
 # passed :boolean
+
+if [ -z "${BOT_ACCESS_TOKEN:-}" ]; then
+  echo "You must set $BOT_ACCESS_TOKEN!"
+fi
 
 bot_url="http://localhost:8080/builds/info"
 project_url=$CIRCLE_BUILD_URL
