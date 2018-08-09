@@ -24,7 +24,7 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
 
   test 'requires item in cart to create order' do
     assert_no_difference('Order.count') do
-      post orders_url, params: { order: { address: @order.address, email: @order.email, name: @order.name, pay_type_id: pay_types(:one).id } }
+      post orders_url, params: { order: { address: @order.address, email: @order.email, name: @order.name, pay_type: pay_types(:one).name } }
     end
 
     assert_redirected_to store_index_path
@@ -35,7 +35,7 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
     post line_items_url, params: { product_id: products(:ruby).id }
 
     assert_difference('Order.count') do
-      post orders_url, params: { order: { address: @order.address, email: @order.email, name: @order.name, pay_type_id: pay_types(:one).id } }
+      post orders_url, params: { order: { address: @order.address, email: @order.email, name: @order.name, pay_type: pay_types(:one).name } }
     end
 
     assert_redirected_to store_index_url
@@ -52,7 +52,7 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update order" do
-    patch order_url(@order), params: { order: { address: @order.address, email: @order.email, name: @order.name, pay_type_id: pay_types(:one).id } }
+    patch order_url(@order), params: { order: { address: @order.address, email: @order.email, name: @order.name, pay_type: pay_types(:one).name } }
     assert_redirected_to order_url(@order)
   end
 
