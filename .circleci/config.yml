@@ -57,7 +57,7 @@ jobs:
     - run:
         name: run tests
         command: |
-          bin/rake
+          bundle exec rake
 
     # collect reports
     - store_test_results:
