@@ -10,7 +10,7 @@ if [ -z "${BOT_ACCESS_TOKEN:-}" ]; then
   echo "You must set $BOT_ACCESS_TOKEN!"
 fi
 
-bot_url="http://localhost:8080/builds/info"
+bot_url=$2
 project_url=$CIRCLE_BUILD_URL
 passed=$1
 message="$CIRCLE_JOB - Build Info\nUser: $CIRCLE_USERNAME\nCommit: $CIRCLE_SHA1\nRepository: $CIRCLE_REPOSITORY_URL"
