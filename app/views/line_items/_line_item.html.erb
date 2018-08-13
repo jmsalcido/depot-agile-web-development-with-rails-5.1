@@ -6,7 +6,9 @@
     <td class="quantity"><%= line_item.quantity %></td>
     <td><%= line_item.product.title %></td>
     <td class="price"><%= number_to_currency(line_item.total_price)%></td>
-    <% unless controller_name == 'orders' %>
-      <td><%= button_to  "Delete", line_item, method: :delete, remote: true  %></td>
+    <% unless render_actions.nil? %>
+      <% if render_actions %>
+        <td><%= button_to  "Delete", line_item, method: :delete, remote: true  %></td>
+      <% end %>
     <% end %>
 </tr>

@@ -1,6 +1,6 @@
 module ApplicationHelper
-  def render_if(condition, record)
+  def render_if(condition, record, args)
     return false unless condition
-    render record
+    render record, args
   end
 end

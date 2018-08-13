@@ -18,7 +18,11 @@
       <nav class="side_nav">
         <% if @cart %>
           <div id="cart" class="carts">
-            <%= render_if @cart && @cart.line_items.any?, @cart %>
+            <% if controller_name == 'orders' %>
+              <%= render_if @cart && @cart.line_items.any?, @cart, {  render_actions: false } %>
+            <% else %>
+              <%= render_if @cart && @cart.line_items.any?, @cart, {  render_actions: true } %>
+          <% end %>
           </div>
         <% end %>
         <ul>

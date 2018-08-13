@@ -6,7 +6,7 @@
     <h2>Your Cart</h2>
 
     <table>
-        <%= render(cart.line_items) %>
+        <%= render(cart.line_items, { render_actions: render_actions }) %>
         <tfoot>
             <tr>
                 <th colspan="2">Total:</th>
@@ -15,7 +15,7 @@
         </tfoot>
     </table>
 
-    <% unless controller_name == 'orders' %>
+    <% if render_actions %>
       <div class="actions">
         <%= button_to "Empty Car", cart,
                       method: :delete,
