@@ -14,7 +14,7 @@ class OrderMailerTest < ActionMailer::TestCase
     assert_equal 'Pragmatic Store Order Shipped', mail.subject
     assert_equal ['dave@example.org'], mail.to
     assert_equal ['from@example.com'], mail.from
-    assert_match /find me in app\/views\/order_mailer\/shipped.html.erb/, mail.body.encoded
+    assert_match %r{<td[^>]*>2<\/td>\s*<td>MyString<\/td>}, mail.body.encoded
   end
 
 end
