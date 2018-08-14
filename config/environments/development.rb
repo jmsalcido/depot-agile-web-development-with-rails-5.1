@@ -74,6 +74,4 @@ Rails.application.configure do
       enable_starttls_auto: true
   }
 
-  puts ENV['SMTP_EMAIL']
-
 end
