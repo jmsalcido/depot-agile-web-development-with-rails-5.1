@@ -9,3 +9,12 @@ one:
 
 two:
   name: Var
+
+Check:
+  name: Check
+
+Credit Card:
+  name: Credit Card
+
+Purchase Order:
+  name: Purchase Order
