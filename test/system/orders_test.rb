@@ -108,4 +108,23 @@ class OrdersTest < ApplicationSystemTestCase
     assert_no_selector '#order_expiration_date'
 
   end
+
+  test 'send shipped email' do
+    order = Order.last
+
+    visit edit_order_path(order)
+
+    fill_in 'order_ship_date', with: '2018-01-01'
+
+    perform_enqueued_jobs do
+      click_on 'Update Order'
+    end
+
+    mail = ActionMailer::Base.deliveries.last
+
+    assert_equal ['dave@example.org'], mail.to
+    assert_equal 'from@example.com', mail[:from].value
+    assert_equal 'Pragmatic Store Order Shipped', mail.subject
+
+  end
 end
