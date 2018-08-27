@@ -1,0 +1,9 @@
+<p>Dear <%= @order.name %></p>
+
+<p>There was a problem while trying to process your payment.</p>
+
+<% unless @message.nil? %>
+  <p>  The problem with your payment was: "<%= @message %>"</p>
+<% end %>
+
+<p>Thank you for your interest from The Pragmatic Store</p>

@@ -15,9 +15,9 @@ class Order < ApplicationRecord
     end
   end
 
+  # TODO this method should be on a different part or at least the payment processor should be sent to this.
   def charge!(pay_type_params)
     payment_details = {}
-    payment_method = nil
 
     case pay_type.name
     when 'Check'
@@ -38,14 +38,15 @@ class Order < ApplicationRecord
     end
 
     payment_result = Pago.make_payment(
-        order_id: id,
-        payment_method: payment_method,
-        payment_details: payment_details
+      order_id: id,
+      payment_method: payment_method,
+      payment_details: payment_details
     )
 
     if payment_result.succeeded?
       OrderMailer.received(self).deliver_later
     else
+      OrderMailer.failure(self, payment_result.message).deliver_later
       raise payment_result.error
     end
   end
