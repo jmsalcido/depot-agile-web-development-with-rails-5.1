@@ -1,7 +1,5 @@
 class Order < ApplicationRecord
 
-  require 'pago'
-
   has_many :line_items, dependent: :destroy
   belongs_to :pay_type
 
@@ -34,21 +32,11 @@ class Order < ApplicationRecord
       payment_method = :po
       payment_details[:po_num] = pay_type_params[:po_number]
     else
-      raise ArgumentError('Foo')
+      raise ArgumentError, 'pay_type not found'
     end
 
-    payment_result = Pago.make_payment(
-      order_id: id,
-      payment_method: payment_method,
-      payment_details: payment_details
-    )
+    OpenStruct.new(order_id: id, payment_method: payment_method, payment_details: payment_details)
 
-    if payment_result.succeeded?
-      OrderMailer.received(self).deliver_later
-    else
-      OrderMailer.failure(self, payment_result.message).deliver_later
-      raise payment_result.error
-    end
   end
 
 end

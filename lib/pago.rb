@@ -34,7 +34,7 @@ class Pago
     Rails.logger.info "Done Processing Payment for #{order_id}"
 
     if failure
-      OpenStruct.new(succeeded?: false, message: message)
+      raise message
     else
       OpenStruct.new(succeeded?: true)
     end
