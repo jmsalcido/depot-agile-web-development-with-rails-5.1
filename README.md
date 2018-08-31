@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/jmsalcido/depot-agile-web-development-with-rails-5.1.svg?style=svg)](https://circleci.com/gh/jmsalcido/depot-agile-web-development-with-rails-5.1)
+
 # README
 
 This README would normally document whatever steps are necessary to get the
