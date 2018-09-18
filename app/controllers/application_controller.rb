@@ -1,6 +1,16 @@
 class ApplicationController < ActionController::Base
   rescue_from Exception, with: :send_email_to_administrator
 
+  before_action :authorize
+
+  protected
+
+  def authorize
+    unless User.find_by(id: session[:user_id])
+      redirect_to login_url, notice: 'Please log in'
+    end
+  end
+
   private
 
   def send_email_to_administrator(exception)
